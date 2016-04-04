@@ -11,20 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404174922) do
+ActiveRecord::Schema.define(version: 20160404190209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "orders", force: :cascade do |t|
-    t.string   "purchaser_name"
-    t.string   "item_description"
-    t.decimal  "item_price"
-    t.integer  "purchase_count"
-    t.string   "merchant_addres"
-    t.string   "merchant_name"
+  create_table "order_items", force: :cascade do |t|
+    t.string   "purchaser_name",   null: false
+    t.string   "item_description", null: false
+    t.decimal  "item_price",       null: false
+    t.decimal  "purchase_count",   null: false
+    t.string   "merchant_address", null: false
+    t.string   "merchant_name",    null: false
+    t.decimal  "total_price"
+    t.integer  "order_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal  "price"
+    t.string   "filename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "order_items", "orders"
 end

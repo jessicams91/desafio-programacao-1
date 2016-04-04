@@ -1,0 +1,11 @@
+<h1>Itens</h1>
+<% @order.order_item.each do |item| %>
+<td><p>Item #<%=item.id %></td></p>
+<td><p>Nome do Comprador: <%=item.purchaser_name %></td></p>
+<td><p>Descrição do Item: <%=item.item_description %></td></p>
+<td><p>Preço do Item: <%=item.item_price %></td></p>
+<td><p>Quantidade de Itens: <%=item.purchase_count %></td></p>
+<td><p>Nome do Vendedor: <%=item.merchant_name %></td></p>
+<td><p>Endereço do Vendedor: <%=item.merchant_address %></td></p>
+<td><p>Preço Total: <%=item.total_price %></td></p>
+<% end %>

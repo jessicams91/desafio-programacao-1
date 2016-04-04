@@ -1,5 +1,15 @@
-<h1>Orders</h1>
+<h1>Pedidos</h1>
+<p><td>Importar Pedidos</td></p>
 <%= form_tag import_orders_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Importar Pedido" %>
+  <p><%= file_field_tag :file %></p>
+  <p><%= submit_tag "Importar Pedido" %></p>
+<% end %>
+<hr>
+<% @orders.each do |order| %>
+  <p><td>Pedido #<%= order.id %></td></p>
+  <p><td>Valor Total: <%=order.price%></td></p>
+  <p><td>Importado em: <%=order.created_at.to_date %></td></p>
+  <p><td>Nome do Arquivo: <%=order.filename %></td></p>
+  <%= link_to 'Ver itens deste arquivo', order_path(order) %></td></p>
+  <br>
 <% end %>

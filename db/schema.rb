@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160404190209) do
     t.string   "purchaser_name",   null: false
     t.string   "item_description", null: false
     t.decimal  "item_price",       null: false
-    t.decimal  "purchase_count",   null: false
+    t.integer  "purchase_count",   null: false
     t.string   "merchant_address", null: false
     t.string   "merchant_name",    null: false
     t.decimal  "total_price"

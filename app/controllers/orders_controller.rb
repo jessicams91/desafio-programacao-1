@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:show, :destroy]
   def index
     @orders = Order.all
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   def import
@@ -18,5 +23,20 @@ class OrdersController < ApplicationController
       @order.destroy
       redirect_to root_path
     end
+  end
+
+  private
+
+  def set_order
+    begin
+  	   @order = Order.find(params[:id])
+  	rescue
+  		flash[:error] = "Erro: O pedido com id #{params[:id]} não existe."
+  		redirect_to root_path
+  	end
+  end
+
+  def order_params
+    params.require(:order).permit(:filename, :price)
   end
 end

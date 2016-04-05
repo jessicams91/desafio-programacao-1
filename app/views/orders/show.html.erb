@@ -1,12 +1,14 @@
-<h1>Itens</h1>
+<h1 class="ls-title-intro ls-ico-numbered-list">Itens</h1>
 <% @order.order_item.each do |item| %>
-<h3><strong><p>Item #<%=item.id %></strong></p></h3>
-<strong><p>Nome do Comprador: </strong><%=item.purchaser_name %></p>
-<strong><p>Descrição do Item: </strong><%=item.item_description %></p>
-<strong><p>Preço do Item: </strong><%=item.item_price %></p>
-<strong><p>Quantidade de Itens: </strong><%=item.purchase_count %></p>
-<strong><p>Nome do Vendedor: </strong><%=item.merchant_name %></p>
-<strong><p>Endereço do Vendedor: </strong><%=item.merchant_address %></p>
-<strong><p>Preço Total: </strong><%=item.total_price %></p>
+<span>
+  <h4 class="ls-title-4">Item #<%=item.id %></strong></h4>
+  <strong><p>Nome do Comprador: </strong><%=item.purchaser_name %></p>
+  <strong><p>Descrição do Item: </strong><%=item.item_description %></p>
+  <strong><p>Preço do Item: </strong><%=item.item_price %></p>
+  <strong><p>Quantidade de Itens: </strong><%=item.purchase_count %></p>
+  <strong><p>Nome do Vendedor: </strong><%=item.merchant_name %></p>
+  <strong><p>Endereço do Vendedor: </strong><%=item.merchant_address %></p>
+  <strong><p>Preço Total: </strong><%=item.total_price %></p>
+</span>
 <hr>
 <% end %>

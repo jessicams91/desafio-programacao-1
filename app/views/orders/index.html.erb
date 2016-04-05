@@ -1,15 +1,20 @@
 <h1>Pedidos</h1>
-<p><td>Importar Pedidos</td></p>
+<p><h2>Importar Pedidos</h2></p>
 <%= form_tag import_orders_path, multipart: true do %>
   <p><%= file_field_tag :file %></p>
   <p><%= submit_tag "Importar Pedido" %></p>
 <% end %>
 <hr>
-<% @orders.each do |order| %>
-  <p><td>Pedido #<%= order.id %></td></p>
-  <p><td>Valor Total: <%=order.price%></td></p>
-  <p><td>Importado em: <%=order.created_at.to_date %></td></p>
-  <p><td>Nome do Arquivo: <%=order.filename %></td></p>
-  <%= link_to 'Ver itens deste arquivo', order_path(order) %></td></p>
-  <br>
+<% if @orders.blank? %>
+  <p><h3>Não há pedidos a serem exibidos</h3></p>
+<% else %>
+  <% @orders.each do |order| %>
+    <p><h3>Pedido #<%= order.id %></h3></p>
+    <p><strong>Valor Total: </strong><%=order.price%></p>
+    <p><strong>Importado em: </strong><%=order.created_at.to_date %></p>
+    <p><strong>Nome do Arquivo: </strong><%=order.filename %></p>
+    <%= link_to 'Ver itens deste arquivo', order_path(order) %></p>
+    <%= link_to 'Excluir Pedido', order, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+    <hr>
+  <% end %>
 <% end %>

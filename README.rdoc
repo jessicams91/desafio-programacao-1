@@ -1,28 +1,44 @@
-== README
+= README
+This is a solution for "Desafio Programação 1" developed by Jessica Moura de Sousa
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby     version: 2.2.1
+* Rails    version: 4.2.6
+* Postgres version: 0.18.4
 
-Things you may want to cover:
+== System dependencies
+* Ruby and Rails on version listed here or higher
+* You must have Postgres database installed in order to run this application.
 
-* Ruby version
+== Configuration
+Run the following command:
 
-* System dependencies
+ 	bundle install
 
-* Configuration
+== Database Creation
+After the configuration, you can create the database with the following command:
 
-* Database creation
+ 	rake db:migrate
 
-* Database initialization
+== How To Run Tests
+To perform test, you need run the rails test command as below:
 
-* How to run the test suite
+ 	rspec
 
-* Services (job queues, cache servers, search engines, etc.)
+== Deployment Instructions
+To deploy the application on your localhost run the following command after all steps above:
 
-* Deployment instructions
+ 	rails s
 
-* ...
+== Usage
+If you did all the configuration and creation steps correctly, when you deploy the application, it should be running at: http://localhost:3000
 
+ * Import File
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+You will be redirected to the main page of the application. In this page, you may import an order file or view the list of imported ones.
+To import, just select a file and click at "Escolher Arquivo" button. If the file is good and has been successfuly imported, a success message will be shown and the new order will appear in the table. If any error appear, the file will not be imported.
+
+* View and Delete Order
+
+If there is at least one Order listed in table, you can "View" it's details by clicking at "View" link in the row. You will be redirected to Order page which shows the Order Items inserted.
+
+And if you already have imported a file, you can "Delete" it clicking at "Delete" link in the Order row. It's important to say that you can only delete your own Order and it is irreversible.

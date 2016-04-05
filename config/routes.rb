@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'order#index'
 
-  resources :orders, only:[:index, :show] do
+  resources :orders, only:[:index, :show, :destroy] do
     collection { post :import }
   end
 end

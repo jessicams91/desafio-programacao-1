@@ -8,20 +8,27 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def destroy
+    @order.destroy
+ 		redirect_to orders_path
+  end
+
   def import
     begin
       if (file = params[:file]).nil?
         flash[:error] = "Erro: Você deve selecionar um arquivo!"
+      elsif File.extname(file.original_filename) != ('.txt' && '.csv' && '.tsv' && '.tab')
+        flash[:error] = "Erro: Formato de arquivo inválido."
       else
-        @order = Order.create!(filename: file.original_filename)
-        @price = Order.import(file, @order)
-        @order.update(price: @price) if @price
-        redirect_to orders_path, notice: "Order imported."
+        @order = Order.new
+        Order.import(file, @order)
+        flash[:success] = "Pedido importado com sucesso"
       end
+      redirect_to orders_path
     rescue
       flash[:error] = "Erro: O arquivo selecionado não pode ser importado."
       @order.destroy
-      redirect_to root_path
+      redirect_to orders_path
     end
   end
 

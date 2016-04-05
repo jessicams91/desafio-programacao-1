@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-  has_many :order_item
+  has_many :order_item, dependent: :destroy
+
   def self.import(file, order)
     order_price = 0.0
     if file.nil?
@@ -11,7 +12,7 @@ class Order < ActiveRecord::Base
         order_item.update(order: order, total_price: total_price)
         order_price += order_item.total_price
       end
-      order_price
+      order.update(filename: file.original_filename, price: order_price)
     end
   end
 end
